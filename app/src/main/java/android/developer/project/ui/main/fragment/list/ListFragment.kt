@@ -1,4 +1,4 @@
-package android.developer.project.ui.main.fragment
+package android.developer.project.ui.main.fragment.list
 
 import android.developer.project.R
 import android.developer.project.base.BaseFragment
@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import android.developer.project.BR
+import kotlinx.android.synthetic.main.fragment_list.*
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -24,6 +25,20 @@ class ListFragment : BaseFragment<FragmentLoginBinding, ListViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val repositoryAdapter = RepositoryAdapter {
+            val action = ListFragmentDirections.actionListToRepository(it.id)
+            navigate(action)
+        }
+
+        repository_list.run {
+            setHasFixedSize(true)
+            adapter = repositoryAdapter
+        }
+
+        listViewModel.repositories.observe(viewLifecycleOwner) {
+            (repository_list.adapter as RepositoryAdapter).updateData(it)
+        }
 
         listViewModel.loadRepositories()
     }

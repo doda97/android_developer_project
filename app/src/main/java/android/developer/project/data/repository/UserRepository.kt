@@ -3,13 +3,11 @@ package android.developer.project.data.repository
 import android.developer.project.data.DataState
 import android.developer.project.data.local.PreferenceHelper
 import android.developer.project.data.model.ui.User
-import android.developer.project.data.remote.Api
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class UserRepository
 constructor(
-    private val api: Api,
     private val prefs: PreferenceHelper
 ) {
     fun isUserLoggedIn(): Boolean{

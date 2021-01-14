@@ -25,6 +25,12 @@ class RepositoryFragment : BaseFragment<FragmentRepositoryBinding, RepositoryVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        repositoryViewModel.loadRepositories()
+        val id = requireArguments().getLong(EXTRA_REPOSITORY_ID, -1)
+
+        repositoryViewModel.loadRepository(id)
+    }
+
+    companion object {
+        private const val EXTRA_REPOSITORY_ID = "repository_id"
     }
 }

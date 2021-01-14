@@ -16,13 +16,13 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(api: Api, preferenceHelper: PreferenceHelper): UserRepository {
-        return UserRepository(api, preferenceHelper)
+    fun provideUserRepository(preferenceHelper: PreferenceHelper): UserRepository {
+        return UserRepository(preferenceHelper)
     }
 
     @Singleton
     @Provides
     fun provideGithubRepository(api: Api, preferenceHelper: PreferenceHelper): GithubRepository {
-        return GithubRepository(api, preferenceHelper)
+        return GithubRepository(api)
     }
 }

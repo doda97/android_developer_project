@@ -1,39 +1,41 @@
 package android.developer.project.data.repository
 
 import android.developer.project.data.DataState
-import android.developer.project.data.local.PreferenceHelper
+import android.developer.project.data.model.rest.toRepository
+import android.developer.project.data.model.ui.Repository
 import android.developer.project.data.remote.Api
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.HttpException
 
 class GithubRepository
-constructor(
-    private val api: Api,
-    private val prefs: PreferenceHelper
-) {
+constructor(private val api: Api) {
 
-    fun getRepositories(): Flow<DataState<Boolean>> = flow {
+    fun getRepositories(): Flow<DataState<List<Repository>?>> = flow {
         emit(DataState.Loading)
         try {
-            emit(DataState.Success(true))
+            val repositoriesResponse = api.getRepositories()
+
+            if(repositoriesResponse.isSuccessful){
+                emit(DataState.Success(repositoriesResponse.body()?.map { it.toRepository() }))
+            } else {
+                emit(DataState.Error(HttpException(repositoriesResponse)))
+            }
         } catch (e: Exception) {
             emit(DataState.Error(e))
         }
     }
 
-    fun searchRepositories(searchText: String): Flow<DataState<Boolean>> = flow {
+    fun searchRepositories(searchText: String): Flow<DataState<List<Repository>?>> = flow {
         emit(DataState.Loading)
         try {
-            emit(DataState.Success(true))
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-        }
-    }
+            val repositoriesResponse = api.searchRepositories(searchText)
 
-    fun getApis(): Flow<DataState<Boolean>> = flow {
-        emit(DataState.Loading)
-        try {
-            emit(DataState.Success(true))
+            if(repositoriesResponse.isSuccessful){
+                emit(DataState.Success(repositoriesResponse.body()?.map { it.toRepository() }))
+            } else {
+                emit(DataState.Error(HttpException(repositoriesResponse)))
+            }
         } catch (e: Exception) {
             emit(DataState.Error(e))
         }

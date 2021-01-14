@@ -2,20 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_navigation"
+    android:id="@+id/list_navigation"
     app:startDestination="@id/navigation_list">
 
     <fragment
         android:id="@+id/navigation_list"
-        android:name="android.developer.project.ui.main.fragment.ListFragment"
+        android:name="android.developer.project.ui.main.fragment.list.ListFragment"
         android:label="@string/title_list"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_list_to_repository"
-            app:destination="@id/navigation_repository" />
-        <action
-            android:id="@+id/action_list_to_login"
-            app:destination="@id/navigation_login" />
+            app:destination="@id/navigation_repository" >
+            <argument
+                android:name="repository_id"
+                app:argType="long"/>
+        </action>
     </fragment>
 
     <fragment
@@ -23,10 +24,5 @@
         android:name="android.developer.project.ui.main.fragment.repository.RepositoryFragment"
         android:label="@string/title_repository"
         tools:layout="@layout/fragment_repository" />
-
-    <activity
-        android:id="@+id/navigation_login"
-        android:name="android.developer.project.ui.login.LoginActivity"
-        tools:layout="@layout/activity_login"/>
 
 </navigation>

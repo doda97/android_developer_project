@@ -6,12 +6,9 @@ import retrofit2.http.*
 
 interface Api {
 
-    @GET("https://developer.github.com/v3")
-    suspend fun getRepositories(@Body searchText: String): Response<RepositoryResponse>
+    @GET("users/doda97/repos")
+    suspend fun getRepositories(): Response<List<RepositoryResponse>>
 
-    @GET("https://developer.github.com/v3/search/#search-repositories")
-    suspend fun searchRepositories(@Body searchText: String): Response<RepositoryResponse>
-
-    @GET("https://developer.github.com/v3/search/#search-repositories")
-    suspend fun getApi(@Body searchText: String): Response<RepositoryResponse>
+    @GET("users/{searchText}/repos")
+    suspend fun searchRepositories(@Body searchText: String): Response<List<RepositoryResponse>>
 }

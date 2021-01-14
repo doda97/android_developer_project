@@ -15,4 +15,7 @@
     <string name="title_profile">Profile</string>
     <string name="title_list">List</string>
     <string name="title_repository">Repository</string>
+    <string name="watchers">Watchers</string>
+    <string name="forks">Forks</string>
+    <string name="issues">Issues</string>
 </resources>
