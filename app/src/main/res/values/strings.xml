@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Android Developer Project</string>
+    <string name="service_unavailable">Service unavailable.</string>
+    <string name="network_error_unknown">No Internet connection</string>
+    <string name="error">Error</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="login_failed">Login failed</string>
+    <string name="title_login">Login</string>
+    <string name="title_main">Main</string>
+    <string name="enter_email">Enter email</string>
+    <string name="password">Enter password</string>
+    <string name="login">Login</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_list">List</string>
+    <string name="title_repository">Repository</string>
+</resources>
