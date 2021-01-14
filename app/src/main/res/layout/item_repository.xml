@@ -13,9 +13,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/author_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -35,7 +36,10 @@
             app:layout_constraintEnd_toStartOf="@id/watchers_layout"
             app:layout_constraintStart_toEndOf="@id/author_image"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@{viewModel.repository.repositoryName}"/>
+            android:text="@{viewModel.repository.repositoryName}"
+            android:layout_marginStart="15dp"
+            android:textStyle="bold"
+            android:layout_marginEnd="20dp"/>
 
         <TextView
             android:id="@+id/author_name"
@@ -46,14 +50,18 @@
             app:layout_constraintEnd_toStartOf="@id/watchers_layout"
             app:layout_constraintStart_toEndOf="@id/author_image"
             app:layout_constraintTop_toBottomOf="@id/repository_name"
-            android:text="@{viewModel.repository.authorName}" />
+            android:text="@{viewModel.repository.authorName}"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="20dp"/>
 
         <LinearLayout
             android:id="@+id/watchers_layout"
             android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@id/forks_layout">
+            app:layout_constraintEnd_toStartOf="@id/forks_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/watchers_number"
@@ -66,16 +74,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@string/watchers" />
+                android:text="@string/watchers"
+                android:textSize="9sp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/forks_layout"
             android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@id/issues_layout">
+            app:layout_constraintEnd_toStartOf="@id/issues_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/forks_number"
@@ -88,16 +99,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@string/forks" />
+                android:text="@string/forks"
+                android:textSize="9sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/issues_layout"
             android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/issue_number"
@@ -110,7 +124,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@string/issues" />
+                android:text="@string/issues"
+                android:textSize="9sp"/>
 
         </LinearLayout>
 

@@ -78,7 +78,9 @@ object NetworkModule {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
 
-        builder.addNetworkInterceptor(StethoInterceptor())
+        if(BuildConfig.DEBUG) {
+            builder.addNetworkInterceptor(StethoInterceptor())
+        }
 
         builder.addNetworkInterceptor(missingInternetConnectionInterceptor)
 

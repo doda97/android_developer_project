@@ -1,14 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.AndroidDeveloperProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.AndroidDeveloperProject" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/purple_700</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -17,24 +13,13 @@
         <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
     </style>
 
-    <!-- The launcher theme. It sets the main window background to the launch_screen drawable -->
-    <style name="Launcher">
-        <item name="android:windowBackground">@drawable/background</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">#00000000</item>
-        <!-- Optional, on Android 5+ you can modify the colorPrimaryDark color to match the windowBackground color for further branding-->
-        <!-- <item name="colorPrimaryDark">@android:color/white</item> -->
-    </style>
-
-    <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Toolbar</item>
+    <style name="Widget.App.Toolbar" parent="ThemeOverlay.App.Toolbar">
+        <item name="overlay">@style/ThemeOverlay.App.Toolbar</item>
         <item name="android:elevation">0dp</item>
     </style>
 
     <style name="ThemeOverlay.App.Toolbar" parent="">
         <item name="colorPrimary">@android:color/white</item>
-        <item name="colorPrimaryVariant">@android:color/black</item>
-        <item name="colorOnPrimary">@color/title_color</item>
     </style>
 
     <color name="title_color">#1E41AC</color>

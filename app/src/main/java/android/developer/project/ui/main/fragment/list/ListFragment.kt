@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import android.developer.project.BR
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 
 @ExperimentalCoroutinesApi
@@ -34,6 +36,7 @@ class ListFragment : BaseFragment<FragmentLoginBinding, ListViewModel>() {
         repository_list.run {
             setHasFixedSize(true)
             adapter = repositoryAdapter
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         }
 
         listViewModel.repositories.observe(viewLifecycleOwner) {

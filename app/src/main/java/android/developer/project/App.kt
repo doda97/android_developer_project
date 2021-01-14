@@ -13,6 +13,8 @@ class App : Application() {
 
         AndroidThreeTen.init(this)
 
-        Stetho.initializeWithDefaults(this)
+        if(BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this)
+        }
     }
 }
