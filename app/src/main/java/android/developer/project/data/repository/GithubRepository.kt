@@ -40,4 +40,19 @@ constructor(private val api: Api) {
             emit(DataState.Error(e))
         }
     }
+
+    fun getRepository(username: String, repositoryName: String): Flow<DataState<Repository?>> = flow {
+        emit(DataState.Loading)
+        try {
+            val repositoriesResponse = api.getRepository(username, repositoryName)
+
+            if(repositoriesResponse.isSuccessful){
+                emit(DataState.Success(repositoriesResponse.body()?.toRepository() ))
+            } else {
+                emit(DataState.Error(HttpException(repositoriesResponse)))
+            }
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+        }
+    }
 }

@@ -24,7 +24,7 @@ constructor(
     fun userLogin(username: String, password: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
-            if(username == "ADMIN" && password == "PASSWORD"){
+            if(username == "admin" && password == "admin"){
                 prefs.setCurrentUser(User(username, password))
                 emit(DataState.Success(true))
             } else {
@@ -56,9 +56,5 @@ constructor(
 
     fun getUser(): User? {
         return prefs.getCurrentUser()
-    }
-
-    fun saveUser(user: User) {
-        prefs.setCurrentUser(user)
     }
 }

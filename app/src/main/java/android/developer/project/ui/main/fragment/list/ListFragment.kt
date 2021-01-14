@@ -29,7 +29,7 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         val repositoryAdapter = RepositoryAdapter( {
-            val action = ListFragmentDirections.actionListToRepository(it.id)
+            val action = ListFragmentDirections.actionListToRepository(it.authorName, it.repositoryName)
             navigate(action)
         }, {
             val action = ListFragmentDirections.actionListToProfile(it.authorName)

@@ -14,8 +14,11 @@
             android:id="@+id/action_list_to_repository"
             app:destination="@id/navigation_repository" >
             <argument
-                android:name="repository_id"
-                app:argType="long"/>
+                android:name="repository_username"
+                app:argType="string"/>
+            <argument
+                android:name="repository_name"
+                app:argType="string"/>
         </action>
         <action
             android:id="@+id/action_list_to_profile"

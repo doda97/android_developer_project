@@ -15,4 +15,7 @@ interface Api {
 
     @GET("users/{username}")
     suspend fun getUser(@Path("username") username: String): Response<OwnerResponse>
+
+    @GET("repos/{username}/{repoName}")
+    suspend fun getRepository(@Path("username") username: String, @Path("repoName") repoName: String): Response<RepositoryResponse>
 }
