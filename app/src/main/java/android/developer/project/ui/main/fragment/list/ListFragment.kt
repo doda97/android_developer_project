@@ -1,17 +1,19 @@
 package android.developer.project.ui.main.fragment.list
 
+import android.content.Intent
+import android.developer.project.BR
 import android.developer.project.R
 import android.developer.project.base.BaseFragment
+import android.developer.project.databinding.FragmentListBinding
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import android.developer.project.BR
-import android.developer.project.databinding.FragmentListBinding
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -28,12 +30,13 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val repositoryAdapter = RepositoryAdapter( {
-            val action = ListFragmentDirections.actionListToRepository(it.authorName, it.repositoryName)
+        val repositoryAdapter = RepositoryAdapter({
+            val action =
+                ListFragmentDirections.actionListToRepository(it.authorName, it.repositoryName)
             navigate(action)
         }, {
-            val action = ListFragmentDirections.actionListToProfile(it.authorName)
-            navigate(action)
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.authorUrl))
+            startActivity(browserIntent)
         })
 
         repository_list.run {

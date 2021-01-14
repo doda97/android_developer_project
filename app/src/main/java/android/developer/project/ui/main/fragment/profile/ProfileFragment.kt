@@ -29,13 +29,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userId: String? = requireArguments().getString(EXTRA_REPOSITORY_AUTHOR)
-
-        userId?.let {
-            profileViewModel.loadProfile(it)
-        } ?: kotlin.run {
-            logout.visibility = VISIBLE
-        }
+        profileViewModel.loadProfile("doda97")
 
         profileViewModel.clickEvents.observe(viewLifecycleOwner, {
             it.getContentIfNotHandled()?.let { view ->

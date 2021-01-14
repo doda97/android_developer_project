@@ -28,7 +28,7 @@ constructor(
                 prefs.setCurrentUser(User(username, password))
                 emit(DataState.Success(true))
             } else {
-                emit(DataState.Success(false))
+                emit(DataState.Error(java.lang.Exception("Wrong username/password")))
             }
         } catch (e: Exception) {
             emit(DataState.Error(e))

@@ -74,7 +74,7 @@ class RepositoryViewModel@ViewModelInject constructor(
     }
 
     fun getUserUrl(): String? {
-        return repository.value?.userUrl
+        return repository.value?.authorUrl
     }
 
     fun getRepositoryUrl(): String? {

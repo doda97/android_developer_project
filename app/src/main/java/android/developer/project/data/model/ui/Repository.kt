@@ -15,5 +15,5 @@ data class Repository(
     val defaultBranch: String,
     val userType: String,
     val repositoryUrl: String,
-    val userUrl: String
+    val authorUrl: String
 )
