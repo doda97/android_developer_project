@@ -5,11 +5,11 @@ import android.developer.project.data.model.ui.Owner
 data class OwnerResponse (
     val avatar_url: String,
     val login: String,
-    val url: String
+    val html_url: String
     )
 
 fun OwnerResponse.toOwner(): Owner = Owner(
     avatar_url,
     login,
-    url
+    html_url
 )
