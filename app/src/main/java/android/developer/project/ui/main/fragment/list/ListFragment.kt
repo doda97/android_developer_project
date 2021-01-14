@@ -2,20 +2,20 @@ package android.developer.project.ui.main.fragment.list
 
 import android.developer.project.R
 import android.developer.project.base.BaseFragment
-import android.developer.project.databinding.FragmentLoginBinding
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import android.developer.project.BR
+import android.developer.project.databinding.FragmentListBinding
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class ListFragment : BaseFragment<FragmentLoginBinding, ListViewModel>() {
+class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
 
     private val listViewModel: ListViewModel by viewModels()
 
@@ -28,10 +28,13 @@ class ListFragment : BaseFragment<FragmentLoginBinding, ListViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val repositoryAdapter = RepositoryAdapter {
+        val repositoryAdapter = RepositoryAdapter( {
             val action = ListFragmentDirections.actionListToRepository(it.id)
             navigate(action)
-        }
+        }, {
+            val action = ListFragmentDirections.actionListToProfile(it.authorName)
+            navigate(action)
+        })
 
         repository_list.run {
             setHasFixedSize(true)

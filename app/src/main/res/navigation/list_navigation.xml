@@ -17,6 +17,13 @@
                 android:name="repository_id"
                 app:argType="long"/>
         </action>
+        <action
+            android:id="@+id/action_list_to_profile"
+            app:destination="@id/navigation_profile" >
+            <argument
+                android:name="user_name"
+                app:argType="string"/>
+        </action>
     </fragment>
 
     <fragment
@@ -24,5 +31,11 @@
         android:name="android.developer.project.ui.main.fragment.repository.RepositoryFragment"
         android:label="@string/title_repository"
         tools:layout="@layout/fragment_repository" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="android.developer.project.ui.main.fragment.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

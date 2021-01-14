@@ -25,6 +25,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileViewModel.loadProfile()
+        val userId = requireArguments().getString(EXTRA_REPOSITORY_AUTHOR, "")
+
+        profileViewModel.loadProfile(userId)
+    }
+
+    companion object {
+        private const val EXTRA_REPOSITORY_AUTHOR = "repository_owner"
     }
 }

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class RepositoryAdapter(private val listener: (Repository) -> Unit) : RecyclerView.Adapter<BaseViewHolder>() {
+class RepositoryAdapter(private val listener: (Repository) -> Unit, private val avatarListener: (Repository) -> Unit) : RecyclerView.Adapter<BaseViewHolder>() {
 
     private val repositories = mutableListOf<Repository>()
 
@@ -34,9 +34,11 @@ class RepositoryAdapter(private val listener: (Repository) -> Unit) : RecyclerVi
 
         override fun onBind(position: Int) {
             val repository = repositories[position]
-            viewModel = RepositoryItemViewModel(repository) {
+            viewModel = RepositoryItemViewModel(repository, {
                 listener.invoke(it)
-            }
+            }, {
+                avatarListener.invoke(it)
+            } )
             binding.viewModel = viewModel
 
             // Immediate Binding

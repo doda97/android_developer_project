@@ -14,7 +14,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:onClick="@{() -> viewModel.click()}">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/author_image"
@@ -25,7 +26,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@{viewModel.repository.authorImage}"/>
+            android:src="@{viewModel.repository.authorImage}"
+            android:onClick="@{() -> viewModel.avatarClicked()}"/>
 
         <TextView
             android:id="@+id/repository_name"
