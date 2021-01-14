@@ -16,8 +16,8 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(preferenceHelper: PreferenceHelper): UserRepository {
-        return UserRepository(preferenceHelper)
+    fun provideUserRepository(api: Api, preferenceHelper: PreferenceHelper): UserRepository {
+        return UserRepository(api, preferenceHelper)
     }
 
     @Singleton

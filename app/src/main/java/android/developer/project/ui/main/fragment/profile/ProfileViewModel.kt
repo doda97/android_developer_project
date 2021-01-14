@@ -5,13 +5,10 @@ import android.developer.project.base.BaseViewModel
 import android.developer.project.data.DataState
 import android.developer.project.data.model.ui.MessageDialogModel
 import android.developer.project.data.model.ui.Owner
-import android.developer.project.data.repository.GithubRepository
 import android.developer.project.data.repository.UserRepository
 import android.developer.project.ui.utils.SingleEvent
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,7 +29,7 @@ class ProfileViewModel@ViewModelInject constructor(
         viewModelScope.launch {
             userRepository.getGitUser(name).onEach { dataState ->
                 when(dataState){
-                    is DataState.Success<Owner?> -> {
+                    is DataState.Success<Owner> -> {
                         showProgress(false)
                         handleData(dataState.data)
                     }
@@ -53,7 +50,7 @@ class ProfileViewModel@ViewModelInject constructor(
         }
     }
 
-    private fun handleData(user: Owner?) {
+    private fun handleData(user: Owner) {
 
     }
 }

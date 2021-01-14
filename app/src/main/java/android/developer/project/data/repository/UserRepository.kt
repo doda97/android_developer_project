@@ -35,13 +35,13 @@ constructor(
         }
     }
 
-    fun getGitUser(name: String): Flow<DataState<Owner?>> = flow {
+    fun getGitUser(name: String): Flow<DataState<Owner>> = flow {
         emit(DataState.Loading)
         try {
             val userResponse = api.getUser(name)
 
-            if(userResponse.isSuccessful) {
-                emit(DataState.Success(userResponse.body()?.toOwner() ))
+            if(userResponse.isSuccessful && userResponse.body() != null) {
+                emit(DataState.Success(userResponse.body()!!.toOwner() ))
             } else {
                 emit(DataState.Error(HttpException(userResponse)))
             }
