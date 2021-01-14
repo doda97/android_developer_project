@@ -21,7 +21,7 @@
             android:id="@+id/action_list_to_profile"
             app:destination="@id/navigation_profile" >
             <argument
-                android:name="user_name"
+                android:name="repository_owner"
                 app:argType="string"/>
         </action>
     </fragment>

@@ -18,4 +18,6 @@
     <string name="watchers">Watchers</string>
     <string name="forks">Forks</string>
     <string name="issues">Issues</string>
+    <string name="logout">Logout</string>
+    <string name="user_name">User name</string>
 </resources>

@@ -29,7 +29,7 @@ constructor(private val api: Api) {
     fun searchRepositories(searchText: String): Flow<DataState<List<Repository>?>> = flow {
         emit(DataState.Loading)
         try {
-            val repositoriesResponse = api.searchRepositories(searchText)
+            val repositoriesResponse = api.searchRepositoriesByUsername(searchText)
 
             if(repositoriesResponse.isSuccessful){
                 emit(DataState.Success(repositoriesResponse.body()?.map { it.toRepository() }))

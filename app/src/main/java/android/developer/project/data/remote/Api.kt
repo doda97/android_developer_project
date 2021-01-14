@@ -11,8 +11,8 @@ interface Api {
     suspend fun getRepositories(): Response<List<RepositoryResponse>>
 
     @GET("users/{searchText}/repos")
-    suspend fun searchRepositoriesByUsername(@Body searchText: String): Response<List<RepositoryResponse>>
+    suspend fun searchRepositoriesByUsername(@Path("searchText") searchText: String): Response<List<RepositoryResponse>>
 
-    @GET("users/{name}")
-    fun getUser(name: String): Response<OwnerResponse>
+    @GET("users/{username}")
+    suspend fun getUser(@Path("username") username: String): Response<OwnerResponse>
 }
