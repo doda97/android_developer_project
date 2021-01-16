@@ -13,7 +13,8 @@ data class RepositoryResponse (
     val created_at: LocalDateTime,
     val updated_at: LocalDateTime,
     val default_branch: String,
-    val html_url: String
+    val html_url: String,
+    val language: String?
 )
 
 fun RepositoryResponse.toRepository() = Repository(
@@ -29,5 +30,6 @@ fun RepositoryResponse.toRepository() = Repository(
     default_branch,
     owner.type,
     html_url,
-    owner.html_url
+    owner.html_url,
+    language
 )

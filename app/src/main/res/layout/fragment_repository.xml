@@ -79,12 +79,24 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/dateOfCreation"
+            android:id="@+id/language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/defaultBranch"
+            android:text="@{viewModel.language}"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/dateOfCreation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/language"
             android:text="@{viewModel.dateOfCreation}"
             android:layout_marginTop="10dp"
             android:textSize="20sp"

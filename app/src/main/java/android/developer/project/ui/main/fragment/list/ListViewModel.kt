@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -30,12 +31,16 @@ class ListViewModel@ViewModelInject constructor(
     private val _repositories = MutableLiveData<List<Repository>>()
     val repositories: LiveData<List<Repository>> = _repositories
 
-    val searchText = MutableLiveData("Android")
+    val searchText = MutableLiveData("a")
 
     val selectedSort = MutableLiveData(Sort.NONE)
 
+    var job : Job? = null
+
     fun loadRepositories() {
-        viewModelScope.launch {
+        job?.cancel()
+
+        job = viewModelScope.launch {
             githubRepository.getRepositories(searchText.value ?: "").onEach { dataState ->
                 when(dataState) {
                     is DataState.Success<List<Repository>?> -> {
