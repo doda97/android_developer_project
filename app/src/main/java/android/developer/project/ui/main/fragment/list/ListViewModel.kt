@@ -75,15 +75,15 @@ class ListViewModel@ViewModelInject constructor(
 
     private fun sortList() {
         searchedRepositories = when(selectedSort.value) {
-            Sort.WatchersASC -> allRepositories.map { it.copy() }.sortedBy{ it.watchers }.toMutableList()
-            Sort.WatchersDESC -> allRepositories.map { it.copy() }.sortedByDescending { it.watchers }.toMutableList()
-            Sort.ForksASC -> allRepositories.map { it.copy() }.sortedBy { it.forks }.toMutableList()
-            Sort.ForksDESC -> allRepositories.map { it.copy() }.sortedByDescending { it.forks }.toMutableList()
-            Sort.IssuesASC -> allRepositories.map { it.copy() }.sortedBy { it.issues }.toMutableList()
-            Sort.IssuesDESC -> allRepositories.map { it.copy() }.sortedByDescending { it.issues }.toMutableList()
-            Sort.RepositoryASC -> allRepositories.map { it.copy() }.sortedBy { it.repositoryName.toLowerCase(Locale.getDefault()) }.toMutableList()
-            Sort.RepositoryDESC -> allRepositories.map { it.copy() }.sortedByDescending { it.repositoryName.toLowerCase(Locale.getDefault()) }.toMutableList()
-            else -> allRepositories.map { it.copy() }.toMutableList()
+            Sort.WatchersASC -> allRepositories.sortedBy{ it.watchers }.toMutableList()
+            Sort.WatchersDESC -> allRepositories.sortedByDescending { it.watchers }.toMutableList()
+            Sort.ForksASC -> allRepositories.sortedBy { it.forks }.toMutableList()
+            Sort.ForksDESC -> allRepositories.sortedByDescending { it.forks }.toMutableList()
+            Sort.UpdatedASC -> allRepositories.sortedBy { it.updatedAt }.toMutableList()
+            Sort.UpdatedDESC -> allRepositories.sortedByDescending { it.updatedAt }.toMutableList()
+            Sort.RepositoryASC -> allRepositories.sortedBy { it.repositoryName.toLowerCase(Locale.getDefault()) }.toMutableList()
+            Sort.RepositoryDESC -> allRepositories.sortedByDescending { it.repositoryName.toLowerCase(Locale.getDefault()) }.toMutableList()
+            else -> allRepositories.toMutableList()
         }
         _repositories.value = searchedRepositories
     }

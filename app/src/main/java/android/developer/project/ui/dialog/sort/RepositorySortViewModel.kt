@@ -17,8 +17,8 @@ class RepositorySortViewModel @ViewModelInject constructor(@Assisted private val
             Sort.WatchersDESC.toString(),
             Sort.ForksASC.toString(),
             Sort.ForksDESC.toString(),
-            Sort.IssuesASC.toString(),
-            Sort.IssuesDESC.toString(),
+            Sort.UpdatedASC.toString(),
+            Sort.UpdatedDESC.toString(),
             Sort.RepositoryASC.toString(),
             Sort.RepositoryDESC.toString()
         )
