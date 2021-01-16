@@ -9,6 +9,9 @@ import android.developer.project.databinding.FragmentListBinding
 import android.developer.project.ui.dialog.sort.RepositorySortDialog.Companion.EXTRA_SORT
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -74,9 +77,12 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
         setHasOptionsMenu(true)
 
         // Search
-        listViewModel.searchText.observe(viewLifecycleOwner) {
-            listViewModel.loadRepositories()
-        }
+        search_text.addTextChangedListener(textChangeListener)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        search_text.removeTextChangedListener(textChangeListener)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -92,5 +98,38 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
             }
         }
         return true
+    }
+
+    var delay: Long = 250
+    var lastTextEdit: Long = 0
+    var handler: Handler = Handler()
+
+    private val inputFinishChecker = Runnable {
+        if (System.currentTimeMillis() > lastTextEdit + delay - 500) {
+            listViewModel.loadRepositories()
+        }
+    }
+
+    private val textChangeListener = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            s.let {
+                lastTextEdit = System.currentTimeMillis()
+                handler.postDelayed(inputFinishChecker, delay)
+            }
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            // ignore
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            handler.removeCallbacks(inputFinishChecker)
+            val newText = s.toString()
+            if (!newText.isNotBlank()) {
+                clear_search.visibility = View.GONE
+            } else {
+                clear_search.visibility = View.VISIBLE
+            }
+        }
     }
 }
