@@ -64,10 +64,6 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
             listViewModel.selectedSort.value = result
         }
 
-        listViewModel.selectedSort.observe(viewLifecycleOwner) {
-            listViewModel.sortList()
-        }
-
         setHasOptionsMenu(true)
 
         // Search

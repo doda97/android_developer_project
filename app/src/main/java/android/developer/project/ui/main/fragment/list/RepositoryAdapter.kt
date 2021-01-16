@@ -39,6 +39,9 @@ class RepositoryAdapter(private val listener: (Repository) -> Unit, private val 
             }, {
                 avatarListener.invoke(it)
             } )
+            viewModel.watchers.value = repository.watchers.toString()
+            viewModel.forks.value = repository.forks.toString()
+            viewModel.issues.value = repository.issues.toString()
             binding.viewModel = viewModel
 
             // Immediate Binding

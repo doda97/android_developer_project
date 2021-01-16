@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@{viewModel.repository.watchers}" />
+                android:text="@{viewModel.watchers}" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@{viewModel.repository.forks}" />
+                android:text="@{viewModel.forks}" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@{viewModel.repository.issues}"  />
+                android:text="@{viewModel.issues}"  />
 
             <TextView
                 android:layout_width="match_parent"

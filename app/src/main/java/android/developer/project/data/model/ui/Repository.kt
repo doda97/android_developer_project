@@ -7,9 +7,9 @@ data class Repository(
     val authorImage: String,
     val authorName: String,
     val repositoryName: String,
-    val watchers: String,
-    val forks: String,
-    val issues: String,
+    val watchers: Long,
+    val forks: Long,
+    val issues: Long,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
     val defaultBranch: String,
@@ -17,4 +17,8 @@ data class Repository(
     val repositoryUrl: String,
     val authorUrl: String,
     val language: String?
-)
+) {
+    fun getString(): String {
+        return this.toString()
+    }
+}
