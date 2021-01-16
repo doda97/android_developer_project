@@ -11,28 +11,13 @@ import retrofit2.HttpException
 class GithubRepository
 constructor(private val api: Api) {
 
-    fun getRepositories(): Flow<DataState<List<Repository>?>> = flow {
+    fun getRepositories(searchText: String): Flow<DataState<List<Repository>?>> = flow {
         emit(DataState.Loading)
         try {
-            val repositoriesResponse = api.getRepositories()
+            val repositoriesResponse = api.getRepositories(searchText, perPage = 20)
 
             if(repositoriesResponse.isSuccessful){
-                emit(DataState.Success(repositoriesResponse.body()?.map { it.toRepository() }))
-            } else {
-                emit(DataState.Error(HttpException(repositoriesResponse)))
-            }
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-        }
-    }
-
-    fun searchRepositories(searchText: String): Flow<DataState<List<Repository>?>> = flow {
-        emit(DataState.Loading)
-        try {
-            val repositoriesResponse = api.searchRepositoriesByUsername(searchText)
-
-            if(repositoriesResponse.isSuccessful){
-                emit(DataState.Success(repositoriesResponse.body()?.map { it.toRepository() }))
+                emit(DataState.Success(repositoriesResponse.body()?.items?.map { it.toRepository() }))
             } else {
                 emit(DataState.Error(HttpException(repositoriesResponse)))
             }

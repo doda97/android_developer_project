@@ -4,11 +4,17 @@ import android.content.Intent
 import android.developer.project.BR
 import android.developer.project.R
 import android.developer.project.base.BaseFragment
+import android.developer.project.data.model.ui.Sort
 import android.developer.project.databinding.FragmentListBinding
+import android.developer.project.ui.dialog.sort.RepositorySortDialog.Companion.EXTRA_SORT
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,9 +33,16 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
 
     override fun getMViewModel(): ListViewModel = listViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        listViewModel.loadRepositories()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Repositories
         val repositoryAdapter = RepositoryAdapter({
             val action =
                 ListFragmentDirections.actionListToRepository(it.authorName, it.repositoryName)
@@ -49,6 +62,35 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
             (repository_list.adapter as RepositoryAdapter).updateData(it)
         }
 
-        listViewModel.loadRepositories()
+        // Sort
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Sort>(EXTRA_SORT)?.observe(viewLifecycleOwner) { result ->
+            listViewModel.selectedSort.value = result
+        }
+
+        listViewModel.selectedSort.observe(viewLifecycleOwner) {
+            listViewModel.sortList()
+        }
+
+        setHasOptionsMenu(true)
+
+        // Search
+        listViewModel.searchText.observe(viewLifecycleOwner) {
+            listViewModel.loadRepositories()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.list_toolbar_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.sort -> {
+                val action = ListFragmentDirections.actionListToSort()
+                navigate(action)
+            }
+        }
+        return true
     }
 }

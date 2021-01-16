@@ -48,10 +48,10 @@ abstract class BaseViewModel: ViewModel(){
     }
 
     fun showProgress(show: Boolean) {
-        progressBar.value = SingleEvent(show)
+        progressBar.postValue(SingleEvent(show))
     }
 
     fun handleSingleClick(view: View) {
-        clickEvents.value = SingleEvent(view)
+        clickEvents.postValue(SingleEvent(view))
     }
 }

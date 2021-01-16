@@ -24,7 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             android:onClick="@{(view)-> viewModel.handleSingleClick(view)}"
             android:text="@string/logout"
-            android:visibility="gone"
             tools:visibility="visible"
             android:layout_marginTop="50dp"/>
 

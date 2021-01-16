@@ -20,4 +20,7 @@
     <string name="issues">Issues</string>
     <string name="logout">Logout</string>
     <string name="user_name">User name</string>
+    <string name="sort">Sort</string>
+    <string name="clear">Clear</string>
+    <string name="search_by_name">Search by name</string>
 </resources>
