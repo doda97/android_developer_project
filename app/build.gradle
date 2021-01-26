@@ -23,6 +23,22 @@ android {
         buildConfigField "String", "BASE_DEVELOPER_URL", "\"https://api.github.com/\""
     }
 
+    flavorDimensions "default"
+    productFlavors {
+        free {
+            applicationId "android.developer.free"
+            versionCode 14
+            versionName "1.14"
+            buildConfigField 'boolean', 'PAID_VERSION', 'false'
+        }
+        paid {
+            applicationId "android.developer.paid"
+            versionCode 20
+            versionName "1.20"
+            buildConfigField 'boolean', 'PAID_VERSION', 'true'
+        }
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"

@@ -1,17 +1,16 @@
 package android.developer.project.ui.main.fragment.repository
 
 import android.content.Intent
+import android.developer.project.BR
 import android.developer.project.R
 import android.developer.project.base.BaseFragment
+import android.developer.project.databinding.FragmentRepositoryBinding
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import android.developer.project.BR
-import android.developer.project.databinding.FragmentRepositoryBinding
-import android.developer.project.ui.main.fragment.profile.ProfileFragmentDirections
-import android.net.Uri
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint

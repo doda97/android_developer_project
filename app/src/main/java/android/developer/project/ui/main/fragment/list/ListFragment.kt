@@ -2,6 +2,7 @@ package android.developer.project.ui.main.fragment.list
 
 import android.content.Intent
 import android.developer.project.BR
+import android.developer.project.BuildConfig
 import android.developer.project.R
 import android.developer.project.base.BaseFragment
 import android.developer.project.data.model.ui.Sort
@@ -41,9 +42,11 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
 
         // Repositories
         val repositoryAdapter = RepositoryAdapter({
-            val action =
-                ListFragmentDirections.actionListToRepository(it.authorName, it.repositoryName)
-            navigate(action)
+            if(BuildConfig.PAID_VERSION) {
+                val action =
+                    ListFragmentDirections.actionListToRepository(it.authorName, it.repositoryName)
+                navigate(action)
+            }
         }, {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.authorUrl))
             startActivity(browserIntent)
